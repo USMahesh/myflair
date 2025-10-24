@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(circle at top, #f5f5f5 0%, #e9edf6 45%, #d9e2f3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: #1f2a44;
+        }
+
+        main {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+            max-width: 520px;
+            width: 100%;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin: 0 0 1.5rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1.25rem;
+            margin: 2rem auto 0;
+            max-width: 360px;
+            justify-items: stretch;
+        }
+
+        form > div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            text-align: left;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input[type="email"] {
+            border: 1px solid rgba(41, 72, 152, 0.25);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            border: 1px solid rgba(41, 72, 152, 0.25);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus {
+            border-color: #294898;
+            box-shadow: 0 0 0 3px rgba(41, 72, 152, 0.15);
+        }
+
+        input[type="email"]:focus {
+            border-color: #294898;
+            box-shadow: 0 0 0 3px rgba(41, 72, 152, 0.15);
+        }
+
+        button[type="submit"] {
+            background: #294898;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 0.85rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            justify-self: start;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 18px rgba(41, 72, 152, 0.2);
+        }
+
+        #status {
+            min-height: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .success {
+            color: #1b7c41;
+        }
+
+        .error {
+            color: #b00020;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 2rem;
+            }
+        }
+    </style>
+
+    <!-- Application Insights: replace with your real connection string -->
+    <script type="text/javascript">
+        window.appInsights || (function (cfg) {
+            function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i); }); }; }
+            var t = { config: cfg }, u = document, e = window, o = "script", s = u.createElement(o), i, f;
+            s.src = cfg.url || "https://js.monitor.azure.com/scripts/b/ai.2.min.js";
+            u.head.appendChild(s);
+            t.queue = [];
+            for (i = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"], f = 0; f < i.length; f += 1) { r("track" + i[f]); }
+            r("setAuthenticatedUserContext");
+            r("clearAuthenticatedUserContext");
+            r("flush");
+            if (!cfg.disablePageViewTracking) {
+                var track = t.trackPageView;
+                t.trackPageView = function () {
+                    track.apply(t, arguments);
+                };
+            }
+            return t;
+        })({
+            connectionString: "InstrumentationKey=YOUR_INSTRUMENTATION_KEY;IngestionEndpoint=https://YOUR_REGION_ENDPOINT",
+            enableAutoRouteTracking: true
+        });
+        window.appInsights.queue && window.appInsights.queue.push(function () {
+            window.appInsights.addTelemetryInitializer(function (envelope) {
+                var data = envelope.data && envelope.data.baseData;
+                if (data && data.properties) {
+                    data.properties.pageContext = "welcome-page";
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <main>
+        <h1>Welcome to My WIP Experience</h1>
+        <p>Hey there! This landing page is the front door to the ideas I am putting together. If you would like me to reach out with updates or opportunities to collaborate, drop your details below and I will get in touch.</p>
+
+        <form id="contact-form" autocomplete="off" novalidate>
+            <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            </div>
+            <div>
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+                <label for="phone">Phone number</label>
+                <input id="phone" name="phone" type="tel" placeholder="(+1) 555-123-4567" required />
+            </div>
+            <button type="submit">Contact</button>
+            <div id="status" role="status" aria-live="polite"></div>
+        </form>
+    </main>
+
+    <script>
+        (function () {
+            var form = document.getElementById("contact-form");
+            var nameField = document.getElementById("name");
+            var emailField = document.getElementById("email");
+            var phoneField = document.getElementById("phone");
+            var statusField = document.getElementById("status");
+
+            function setStatus(message, type) {
+                statusField.textContent = message;
+                statusField.className = type || "";
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                setStatus("", "");
+
+                var name = nameField.value.trim();
+                var email = emailField.value.trim();
+                var phone = phoneField.value.trim();
+
+                if (!name) {
+                    setStatus("Please enter your name.", "error");
+                    nameField.focus();
+                    return;
+                }
+
+                if (!email) {
+                    setStatus("Please enter a valid email address.", "error");
+                    emailField.focus();
+                    return;
+                }
+
+                if (!phone) {
+                    setStatus("Please enter a phone number.", "error");
+                    phoneField.focus();
+                    return;
+                }
+
+                var payload = {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    pageContext: "welcome-page",
+                    submittedAt: new Date().toISOString()
+                };
+
+                if (window.appInsights && window.appInsights.trackEvent) {
+                    window.appInsights.trackEvent({
+                        name: "emailSignup",
+                        properties: payload
+                    });
+                }
+
+                fetch("https://YOUR_LOGIC_APP_HTTPS_TRIGGER_ENDPOINT", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                }).then(function (response) {
+                    if (!response.ok) {
+                        throw new Error("Unexpected response status " + response.status);
+                    }
+                    nameField.value = "";
+                    emailField.value = "";
+                    phoneField.value = "";
+                    setStatus("Thanks! Look out for updates soon.", "success");
+                }).catch(function (error) {
+                    console.error("Signup failed", error);
+                    setStatus("Something went wrong. Please try again in a moment.", "error");
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
